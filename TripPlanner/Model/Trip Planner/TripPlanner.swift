@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import SwiftData
 
 struct TripPlanner {
     let stopTimes: [String : [StopTime]]
@@ -17,13 +18,28 @@ struct TripPlanner {
     let stopTimeOrder: [String : [String : Int]] // Maps trip id with another dictionary which maps stop id with order of the stop within that trip
     let tree: KDTree<EquirectangularStop>
     
-    private init(stopTimes: [String : [StopTime]], stopsByTripID: [String : [Stop]], tripsByStopID: [String : [Trip]], transferableStops: [String : [Stop]], stopTimeOrder: [String : [String : Int]], tree: KDTree<EquirectangularStop>) {
-        self.stopTimes = stopTimes
-        self.stopsByTripID = stopsByTripID
-        self.tripsByStopID = tripsByStopID
-        self.transferableStops = transferableStops
-        self.stopTimeOrder = stopTimeOrder
-        self.tree = tree
+    init(modelContext: ModelContext) {
+        let fetchDescriptor = FetchDescriptor<GTFSCalendar>()
+        allServiceIDs = try! modelContext.fetch(fetchDescriptor)
+        let fileURL = appRegion.fileURL
+        GTFSManager.createDatabaseIfNotExist(modelContext: modelContext)
+        let data = try! Data(contentsOf: fileURL)
+        // Load the data from the file
+        // Decode the data and assign it to the properties
+        let loadedData = try! JSONDecoder().decode(ComputedData.self, from: data)
+        self.stopTimes = loadedData.stopTimes
+        self.stopsByTripID = loadedData.stopsByTripID
+        var tmp = loadedData.tripsByStopID
+        let condition = AppRegion.serviceCondition
+        for (key, value) in tmp {
+            tmp[key] = value.filter {
+                condition($0.serviceID)
+            }
+        }
+        self.tripsByStopID = tmp
+        self.transferableStops = loadedData.transferableStops
+        self.stopTimeOrder = loadedData.stopTimeOrder
+        self.tree = loadedData.tree
     }
     
     static var shared: TripPlanner!
