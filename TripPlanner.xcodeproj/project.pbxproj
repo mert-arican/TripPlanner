@@ -19,7 +19,7 @@
 		D010932A2D3F863100B89E30 /* KDTreePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093212D3F863100B89E30 /* KDTreePoint.swift */; };
 		D010932D2D3F881B00B89E30 /* EquirectangularStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D010932C2D3F881B00B89E30 /* EquirectangularStop.swift */; };
 		D010932F2D3F88BD00B89E30 /* EquirectangularProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D010932E2D3F88BD00B89E30 /* EquirectangularProjection.swift */; };
-		D01093312D3F894100B89E30 /* CLLocationCoordinate2D+Projection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093302D3F894100B89E30 /* CLLocationCoordinate2D+Projection.swift */; };
+		D01093312D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093302D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift */; };
 		D01093352D3F8CDE00B89E30 /* ComputedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093342D3F8CDE00B89E30 /* ComputedData.swift */; };
 		D01093372D3F93D700B89E30 /* RouteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093362D3F93D700B89E30 /* RouteComponent.swift */; };
 		D012C6A02D437C3300ABF03C /* KDTreeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012C69F2D437C3300ABF03C /* KDTreeOrder.swift */; };
@@ -39,6 +39,13 @@
 		D05BB5362D3E2D1900E244A7 /* stops.txt in Resources */ = {isa = PBXBuildFile; fileRef = D05BB52D2D3E2D1800E244A7 /* stops.txt */; };
 		D05BB5372D3E2D1900E244A7 /* calendar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D05BB52E2D3E2D1800E244A7 /* calendar.txt */; };
 		D05BB5382D3E2D1900E244A7 /* shapes.txt in Resources */ = {isa = PBXBuildFile; fileRef = D05BB52F2D3E2D1900E244A7 /* shapes.txt */; };
+		D070E81F2D45936100CCCF7A /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E81E2D45936100CCCF7A /* Color+Extensions.swift */; };
+		D070E8212D4594A600CCCF7A /* Trip+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E8202D4594A600CCCF7A /* Trip+Extensions.swift */; };
+		D070E8232D4594F000CCCF7A /* GTFSCalendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E8222D4594F000CCCF7A /* GTFSCalendar+Extensions.swift */; };
+		D070E8252D45953400CCCF7A /* Stop+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E8242D45953400CCCF7A /* Stop+Extensions.swift */; };
+		D070E8272D4595B600CCCF7A /* GTFSShape+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E8262D4595B600CCCF7A /* GTFSShape+Extensions.swift */; };
+		D070E82A2D45976700CCCF7A /* AppRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E8292D45976700CCCF7A /* AppRegion.swift */; };
+		D070E82C2D45983500CCCF7A /* JourneyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E82B2D45983500CCCF7A /* JourneyComponent.swift */; };
 		D07294582D4395E4009A6316 /* TripPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07294572D4395E4009A6316 /* TripPlannerView.swift */; };
 		D072945A2D4396CC009A6316 /* RouteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07294592D4396CC009A6316 /* RouteListView.swift */; };
 		D075442F2D3E4FD000528817 /* Constantstinopolis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075442E2D3E4FD000528817 /* Constantstinopolis.swift */; };
@@ -86,7 +93,7 @@
 		D01093212D3F863100B89E30 /* KDTreePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDTreePoint.swift; sourceTree = "<group>"; };
 		D010932C2D3F881B00B89E30 /* EquirectangularStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquirectangularStop.swift; sourceTree = "<group>"; };
 		D010932E2D3F88BD00B89E30 /* EquirectangularProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquirectangularProjection.swift; sourceTree = "<group>"; };
-		D01093302D3F894100B89E30 /* CLLocationCoordinate2D+Projection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Projection.swift"; sourceTree = "<group>"; };
+		D01093302D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
 		D01093342D3F8CDE00B89E30 /* ComputedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputedData.swift; sourceTree = "<group>"; };
 		D01093362D3F93D700B89E30 /* RouteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteComponent.swift; sourceTree = "<group>"; };
 		D012C69F2D437C3300ABF03C /* KDTreeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDTreeOrder.swift; sourceTree = "<group>"; };
@@ -109,6 +116,13 @@
 		D05BB52D2D3E2D1800E244A7 /* stops.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stops.txt; sourceTree = "<group>"; };
 		D05BB52E2D3E2D1800E244A7 /* calendar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar.txt; sourceTree = "<group>"; };
 		D05BB52F2D3E2D1900E244A7 /* shapes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shapes.txt; sourceTree = "<group>"; };
+		D070E81E2D45936100CCCF7A /* Color+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		D070E8202D4594A600CCCF7A /* Trip+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+Extensions.swift"; sourceTree = "<group>"; };
+		D070E8222D4594F000CCCF7A /* GTFSCalendar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GTFSCalendar+Extensions.swift"; sourceTree = "<group>"; };
+		D070E8242D45953400CCCF7A /* Stop+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stop+Extensions.swift"; sourceTree = "<group>"; };
+		D070E8262D4595B600CCCF7A /* GTFSShape+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GTFSShape+Extensions.swift"; sourceTree = "<group>"; };
+		D070E8292D45976700CCCF7A /* AppRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRegion.swift; sourceTree = "<group>"; };
+		D070E82B2D45983500CCCF7A /* JourneyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyComponent.swift; sourceTree = "<group>"; };
 		D07294572D4395E4009A6316 /* TripPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerView.swift; sourceTree = "<group>"; };
 		D07294592D4396CC009A6316 /* RouteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListView.swift; sourceTree = "<group>"; };
 		D075442E2D3E4FD000528817 /* Constantstinopolis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantstinopolis.swift; sourceTree = "<group>"; };
@@ -171,7 +185,12 @@
 		D01093322D3F895D00B89E30 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D01093302D3F894100B89E30 /* CLLocationCoordinate2D+Projection.swift */,
+				D01093302D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift */,
+				D070E81E2D45936100CCCF7A /* Color+Extensions.swift */,
+				D070E8222D4594F000CCCF7A /* GTFSCalendar+Extensions.swift */,
+				D070E8262D4595B600CCCF7A /* GTFSShape+Extensions.swift */,
+				D070E8242D45953400CCCF7A /* Stop+Extensions.swift */,
+				D070E8202D4594A600CCCF7A /* Trip+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -228,9 +247,7 @@
 			children = (
 				D05BB4E62D3E28DF00E244A7 /* TripPlannerApp.swift */,
 				D075444A2D3E501200528817 /* Model */,
-				D05BB4E82D3E28DF00E244A7 /* ContentView.swift */,
-				D07294572D4395E4009A6316 /* TripPlannerView.swift */,
-				D07294592D4396CC009A6316 /* RouteListView.swift */,
+				D070E8282D45971B00CCCF7A /* View */,
 				D05BB4EA2D3E28E200E244A7 /* Assets.xcassets */,
 				D010932B2D3F863900B89E30 /* KDTree */,
 				D01093322D3F895D00B89E30 /* Extensions */,
@@ -281,6 +298,25 @@
 			path = "Singapore GTFS Data";
 			sourceTree = "<group>";
 		};
+		D070E8282D45971B00CCCF7A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D07294572D4395E4009A6316 /* TripPlannerView.swift */,
+				D07294592D4396CC009A6316 /* RouteListView.swift */,
+				D05BB4E82D3E28DF00E244A7 /* ContentView.swift */,
+				D070E82D2D45984500CCCF7A /* Helper Files */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D070E82D2D45984500CCCF7A /* Helper Files */ = {
+			isa = PBXGroup;
+			children = (
+				D070E82B2D45983500CCCF7A /* JourneyComponent.swift */,
+			);
+			path = "Helper Files";
+			sourceTree = "<group>";
+		};
 		D07544442D3E4FEA00528817 /* GTFS Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +347,7 @@
 		D075444A2D3E501200528817 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D070E8292D45976700CCCF7A /* AppRegion.swift */,
 				D075442E2D3E4FD000528817 /* Constantstinopolis.swift */,
 				D07544492D3E500B00528817 /* GTFS */,
 				D01093332D3F897D00B89E30 /* Equirectangular */,
@@ -463,21 +500,25 @@
 				D012C6A02D437C3300ABF03C /* KDTreeOrder.swift in Sources */,
 				D01093352D3F8CDE00B89E30 /* ComputedData.swift in Sources */,
 				D01093262D3F863100B89E30 /* KDTree+Codable.swift in Sources */,
+				D070E8272D4595B600CCCF7A /* GTFSShape+Extensions.swift in Sources */,
 				D01093272D3F863100B89E30 /* KDTree.swift in Sources */,
 				D075443D2D3E4FE000528817 /* GTFSShape.swift in Sources */,
+				D070E8252D45953400CCCF7A /* Stop+Extensions.swift in Sources */,
 				D075443C2D3E4FE000528817 /* StopTime.swift in Sources */,
 				D010932A2D3F863100B89E30 /* KDTreePoint.swift in Sources */,
 				D05BB4E92D3E28DF00E244A7 /* ContentView.swift in Sources */,
 				D01093372D3F93D700B89E30 /* RouteComponent.swift in Sources */,
-				D01093312D3F894100B89E30 /* CLLocationCoordinate2D+Projection.swift in Sources */,
+				D01093312D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift in Sources */,
 				D075443F2D3E4FE000528817 /* Trip.swift in Sources */,
 				D075443E2D3E4FE000528817 /* GTFSCalendar.swift in Sources */,
 				D01093292D3F863100B89E30 /* KDTree+RangeSearch.swift in Sources */,
 				D01093242D3F863100B89E30 /* CGPoint+KDTreePoint.swift in Sources */,
+				D070E8212D4594A600CCCF7A /* Trip+Extensions.swift in Sources */,
 				D075443B2D3E4FE000528817 /* Transfer.swift in Sources */,
 				D07544412D3E4FE000528817 /* GTFS.swift in Sources */,
 				D010932F2D3F88BD00B89E30 /* EquirectangularProjection.swift in Sources */,
 				D05BB4E72D3E28DF00E244A7 /* TripPlannerApp.swift in Sources */,
+				D070E8232D4594F000CCCF7A /* GTFSCalendar+Extensions.swift in Sources */,
 				D075442F2D3E4FD000528817 /* Constantstinopolis.swift in Sources */,
 				D07544422D3E4FE000528817 /* Route.swift in Sources */,
 				D01093282D3F863100B89E30 /* KDTree+NearestNeighbour.swift in Sources */,
@@ -485,7 +526,10 @@
 				D01093182D3F85F200B89E30 /* TripPlanner.swift in Sources */,
 				D072945A2D4396CC009A6316 /* RouteListView.swift in Sources */,
 				D07544472D3E500600528817 /* CSVDecodable.swift in Sources */,
+				D070E81F2D45936100CCCF7A /* Color+Extensions.swift in Sources */,
+				D070E82C2D45983500CCCF7A /* JourneyComponent.swift in Sources */,
 				D07294582D4395E4009A6316 /* TripPlannerView.swift in Sources */,
+				D070E82A2D45976700CCCF7A /* AppRegion.swift in Sources */,
 				D01093252D3F863100B89E30 /* KDTree+Equatable.swift in Sources */,
 				D07544402D3E4FE000528817 /* Agency.swift in Sources */,
 				D01093232D3F863100B89E30 /* KDTree+Sequence.swift in Sources */,

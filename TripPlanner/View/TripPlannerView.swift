@@ -12,8 +12,10 @@ import MapKit
 struct TripPlannerView: View {
     @Environment(\.modelContext) private var modelContext
     
-    @State private var startingPoint: CLLocationCoordinate2D? // = .init(latitude: 1.332183089428991, longitude: 103.8521371433289)
-    @State private var destinationPoint: CLLocationCoordinate2D? // = .init(latitude: 1.337579411339063, longitude: 103.91502156254148)
+    @State private var startingPoint: CLLocationCoordinate2D?
+    // = .init(latitude: 1.332183089428991, longitude: 103.8521371433289)
+    @State private var destinationPoint: CLLocationCoordinate2D?
+    // = .init(latitude: 1.337579411339063, longitude: 103.91502156254148)
     
     private var tripPlanner: TripPlanner {
         TripPlanner.shared
@@ -24,8 +26,8 @@ struct TripPlannerView: View {
         span: MKCoordinateSpan(latitudeDelta: 0.42, longitudeDelta: 0.42) // Zoom level
     )
     
-    @State private var foundTrips: [[RouteComponent]]?
-    @State private var selectedTripIndex: Int?
+    @State private var plannedJourneys: [[RouteComponent]]?
+    @State private var selectedJourneyIndex: Int?
         
     private func getPoints(of trip: Trip, between source: Stop, and destination: Stop) -> [MKMapPoint] {
         let shapeID = trip.shapeID
@@ -43,22 +45,24 @@ struct TripPlannerView: View {
     }
     
     func mapTripsWithStops(components: [RouteComponent]) -> [JourneyComponent] {
-        guard components.count >= 3 else { return [] } // MARK: TODO !!!
-        
+        guard components.count >= 3 else { return [] }
         var results: [JourneyComponent] = []
         let firstStop = components[0].stop
-        let distance = sqrt(startingPoint!.point.squaredDistance(to: firstStop.point))
+        let distance = Int(sqrt(startingPoint!.point.squaredDistance(to: firstStop.point)))
         let start = Stop(id: "", code: "", latitude: startingPoint!.latitude, longitude: startingPoint!.longitude, name: "", url: "", wheelchairBoarding: false)
-        results.append(.walking(distance: Int(distance), start: start, destination: firstStop))
+        results.append(.walking(distance: distance, start: start, destination: firstStop))
         
         let ultDestination = Stop(id: "", code: "", latitude: destinationPoint!.latitude, longitude: destinationPoint!.longitude, name: "", url: "", wheelchairBoarding: false)
         
-        // Generics for enums???? !!!
         for i in 1..<components.count - 1 {
             if case let .stop(start) = components[i - 1],
                case let .stop(destination) = components[i + 1] {
                 if case let .trip(trip) = components[i] {
                     results.append(.trip(trip, start: start, destination: destination))
+                    if i == components.count - 2 {
+                        let distance = Int(sqrt(destination.point.squaredDistance(to: ultDestination.point)))
+                        results.append(.walking(distance: distance, start: destination, destination: ultDestination))
+                    }
                 }
                 else if case let .walking(distance) = components[i] {
                     let dest = (i != components.count - 2) ? destination : ultDestination
@@ -66,7 +70,6 @@ struct TripPlannerView: View {
                 }
             }
         }
-        
         return results
     }
     
@@ -81,8 +84,8 @@ struct TripPlannerView: View {
                         Marker("Dst", coordinate: destinationPoint)
                     }
                     
-                    if let tripIndex = selectedTripIndex,
-                       let selectedTrip = foundTrips?[tripIndex]
+                    if let tripIndex = selectedJourneyIndex,
+                       let selectedTrip = plannedJourneys?[tripIndex]
                     {
                         let components = mapTripsWithStops(components: selectedTrip)
                         
@@ -92,15 +95,10 @@ struct TripPlannerView: View {
                                 let points = getPoints(of: trip, between: start, and: destination)
                                 MapPolyline(points: points)
                                     .stroke(trip.isRailway ? .purple : .blue, lineWidth: 8.0)
-//
-//                                ForEach(points.indices, id: \.self) { index in
-//                                    if index != 5 {
-//                                        Marker("\(index)", coordinate: points[index].coordinate)
-//                                    }
-//                                }
+                                
                                 let tripImage = trip.isRailway ?  "tram.fill.tunnel" : "bus"
                                 Marker(start.name, systemImage: tripImage, coordinate: start.coordinate)
-//                                Marker(destination.name, systemImage: "xmark", coordinate: destination.coordinate)
+                                    .tint(trip.isRailway ? .purple.adjust(by: -20.0) : .blue.adjust(by: -20.0))
                                 
                             case .walking(_, let start, let destination):
                                 let points = [start.coordinate, destination.coordinate].map {
@@ -109,7 +107,6 @@ struct TripPlannerView: View {
                                 MapPolyline(points: points)
                                     .stroke(.yellow, style: StrokeStyle(lineWidth: 8.0, dash: [4.0, 2.0]))
                                 Marker(start.name, systemImage: "figure.walk", coordinate: start.coordinate)
-//                                Marker(destination.name, systemImage: "figure.walk", coordinate: destination.coordinate)
                             }
                         }
                     }
@@ -118,15 +115,13 @@ struct TripPlannerView: View {
                     if let touchPoint = proxy.convert(touchPosition, from: .local) {
                         if startingPoint == nil {
                             self.startingPoint = touchPoint
-                            print("Set starting point.")
                         }
                         else if destinationPoint == nil {
                             self.destinationPoint = touchPoint
-                            print("Set destination point.")
                         }
                         if let start = startingPoint, let destination = destinationPoint {
-                            self.foundTrips = tripPlanner.findTrips(from: start, to: destination)
-                            self.selectedTripIndex = 0
+                            self.plannedJourneys = tripPlanner.findTrips(from: start, to: destination)
+                            self.selectedJourneyIndex = 0
                         }
                     }
                 }
@@ -137,8 +132,8 @@ struct TripPlannerView: View {
                 if let startingPoint = startingPoint {
                     Button {
                         self.startingPoint = nil
-                        self.foundTrips = nil
-                        self.selectedTripIndex = nil
+                        self.plannedJourneys = nil
+                        self.selectedJourneyIndex = nil
                     } label: {
                         Text(startingPoint.coordinateText)
                             .padding()
@@ -149,8 +144,8 @@ struct TripPlannerView: View {
                 if let destinationPoint = destinationPoint {
                     Button {
                         self.destinationPoint = nil
-                        self.foundTrips = nil
-                        self.selectedTripIndex = nil
+                        self.plannedJourneys = nil
+                        self.selectedJourneyIndex = nil
                     } label: {
                         Text(destinationPoint.coordinateText)
                             .padding()
@@ -163,33 +158,5 @@ struct TripPlannerView: View {
             .foregroundStyle(.white)
             .padding()
         }
-    }
-}
-
-
-enum JourneyComponent: Identifiable {
-    case trip(Trip, start: Stop, destination: Stop)
-    case walking(distance: Int, start: Stop, destination: Stop)
-    
-    var id: String {
-        switch self {
-        case .trip(let trip, let start, let destination):
-            return trip.id+start.id+destination.id
-        case .walking(let distance, let start, let destination):
-            return String(distance)+start.id+destination.id
-        }
-    }
-    //    case stop(Stop)
-}
-
-extension Stop {
-    var coordinate: CLLocationCoordinate2D {
-        .init(latitude: latitude, longitude: longitude)
-    }
-}
-
-extension CLLocationCoordinate2D {
-    var coordinateText: String {
-        String(format: "%.6f, %.6f", latitude, longitude)
     }
 }

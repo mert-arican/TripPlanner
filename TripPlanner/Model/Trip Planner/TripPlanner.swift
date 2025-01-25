@@ -20,7 +20,7 @@ struct TripPlanner {
     
     init(modelContext: ModelContext) {
         let fetchDescriptor = FetchDescriptor<GTFSCalendar>()
-        allServiceIDs = try! modelContext.fetch(fetchDescriptor)
+        AppRegion.allServiceIDs = try! modelContext.fetch(fetchDescriptor)
         let fileURL = appRegion.fileURL
         GTFSManager.createDatabaseIfNotExist(modelContext: modelContext)
         let data = try! Data(contentsOf: fileURL)
@@ -122,11 +122,5 @@ struct TripPlanner {
             }
         }
         return successfulTrips.count == 0 ? nil : successfulTrips
-    }
-}
-
-fileprivate extension Stop {
-    static var empty: Stop {
-        .init(id: "", code: "", latitude: 0.0, longitude: 0.0, name: "", url: "", wheelchairBoarding: false)
     }
 }

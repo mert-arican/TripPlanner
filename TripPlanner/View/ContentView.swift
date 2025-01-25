@@ -40,10 +40,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
-extension GTFSShape {
-    var coordinate: CLLocationCoordinate2D {
-        .init(latitude: latitude, longitude: longitude)
-    }
-    var point: CGPoint { coordinate.point }
-}

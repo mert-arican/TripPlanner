@@ -12,4 +12,8 @@ extension CLLocationCoordinate2D {
     var point: CGPoint {
         projection.project(latitude: latitude, longitude: longitude)
     }
+    
+    var coordinateText: String {
+        String(format: "%.6f, %.6f", latitude, longitude)
+    }
 }

@@ -28,9 +28,3 @@ struct EquirectangularProjection {
         return .init(x: x, y: y)
     }
 }
-
-extension Stop {
-    var point: CGPoint {
-        projection.project(latitude: latitude, longitude: longitude)
-    }
-}
