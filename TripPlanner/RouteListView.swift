@@ -17,6 +17,7 @@ struct RouteListView: View {
                 Text(route.id)
             }
         }
+        .navigationTitle("Routes")
     }
 }
 

@@ -47,7 +47,7 @@ struct TripPlanner {
     func findTrips(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) -> [[RouteComponent]]? {
         let theSource = tree.nearest(to: .init(stop: .empty, point: source.point))!
         let sources = transferableStops[theSource.stop.id]!
-        let theDestination = tree.nearest(to: .init(stop: .empty, point: source.point))!
+        let theDestination = tree.nearest(to: .init(stop: .empty, point: destination.point))!
         let destinations = Set(transferableStops[theDestination.stop.id]!)
         return raptorizedBFS(from: sources, to: destinations)
     }
