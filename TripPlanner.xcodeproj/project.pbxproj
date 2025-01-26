@@ -61,6 +61,7 @@
 		D07544432D3E4FE000528817 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07544392D3E4FE000528817 /* Frequency.swift */; };
 		D07544472D3E500600528817 /* CSVDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07544452D3E500600528817 /* CSVDecodable.swift */; };
 		D07544482D3E500600528817 /* GTFS Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07544462D3E500600528817 /* GTFS Manager.swift */; };
+		D0EFAB352D46262100778E28 /* JourneyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EFAB342D46262100778E28 /* JourneyDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		D07544392D3E4FE000528817 /* Frequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		D07544452D3E500600528817 /* CSVDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVDecodable.swift; sourceTree = "<group>"; };
 		D07544462D3E500600528817 /* GTFS Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GTFS Manager.swift"; sourceTree = "<group>"; };
+		D0EFAB342D46262100778E28 /* JourneyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				D07294572D4395E4009A6316 /* TripPlannerView.swift */,
+				D0EFAB342D46262100778E28 /* JourneyDetailView.swift */,
 				D07294592D4396CC009A6316 /* RouteListView.swift */,
 				D05BB4E82D3E28DF00E244A7 /* ContentView.swift */,
 				D070E82D2D45984500CCCF7A /* Helper Files */,
@@ -516,6 +519,7 @@
 				D070E8212D4594A600CCCF7A /* Trip+Extensions.swift in Sources */,
 				D075443B2D3E4FE000528817 /* Transfer.swift in Sources */,
 				D07544412D3E4FE000528817 /* GTFS.swift in Sources */,
+				D0EFAB352D46262100778E28 /* JourneyDetailView.swift in Sources */,
 				D010932F2D3F88BD00B89E30 /* EquirectangularProjection.swift in Sources */,
 				D05BB4E72D3E28DF00E244A7 /* TripPlannerApp.swift in Sources */,
 				D070E8232D4594F000CCCF7A /* GTFSCalendar+Extensions.swift in Sources */,

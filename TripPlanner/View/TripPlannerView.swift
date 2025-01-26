@@ -28,7 +28,8 @@ struct TripPlannerView: View {
     
     @State private var plannedJourneys: [[RouteComponent]]?
     @State private var selectedJourneyIndex: Int?
-        
+    @State private var showJourneyDetail: Bool = false
+    
     private func getPoints(of trip: Trip, between source: Stop, and destination: Stop) -> [MKMapPoint] {
         let shapeID = trip.shapeID
         let shapeFetch = FetchDescriptor<GTFSShape>(predicate: #Predicate {
@@ -122,6 +123,7 @@ struct TripPlannerView: View {
                         if let start = startingPoint, let destination = destinationPoint {
                             self.plannedJourneys = tripPlanner.findTrips(from: start, to: destination)
                             self.selectedJourneyIndex = 0
+                            self.showJourneyDetail = true
                         }
                     }
                 }
@@ -129,34 +131,54 @@ struct TripPlannerView: View {
             .edgesIgnoringSafeArea(.all)
             .navigationTitle("RouteBolt")
             VStack {
-                if let startingPoint = startingPoint {
-                    Button {
-                        self.startingPoint = nil
-                        self.plannedJourneys = nil
-                        self.selectedJourneyIndex = nil
-                    } label: {
-                        Text(startingPoint.coordinateText)
-                            .padding()
-                            .background(.blue)
-                            .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                VStack {
+                    if let startingPoint = startingPoint {
+                        Button {
+                            self.startingPoint = nil
+                            self.plannedJourneys = nil
+                            self.selectedJourneyIndex = nil
+                            self.showJourneyDetail = false
+                        } label: {
+                            Text(startingPoint.coordinateText)
+                                .padding()
+                                .background(.blue)
+                                .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                        }
                     }
-                }
-                if let destinationPoint = destinationPoint {
-                    Button {
-                        self.destinationPoint = nil
-                        self.plannedJourneys = nil
-                        self.selectedJourneyIndex = nil
-                    } label: {
-                        Text(destinationPoint.coordinateText)
-                            .padding()
-                            .background(.blue)
-                            .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                    if let destinationPoint = destinationPoint {
+                        Button {
+                            self.destinationPoint = nil
+                            self.plannedJourneys = nil
+                            self.selectedJourneyIndex = nil
+                            self.showJourneyDetail = false
+                        } label: {
+                            Text(destinationPoint.coordinateText)
+                                .padding()
+                                .background(.blue)
+                                .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                        }
                     }
+                    Spacer()
                 }
+                .foregroundStyle(.white)
+                .padding()
+                
                 Spacer()
+                
+                // MARK: TODO: Planned Trips List View
+                VStack {
+                    
+                }
             }
-            .foregroundStyle(.white)
-            .padding()
+        }
+        .overlay(alignment: .bottom) {
+            if showJourneyDetail,
+               let index = selectedJourneyIndex,
+               let route = plannedJourneys?[index]
+            {
+                let journey = mapTripsWithStops(components: route)
+                JourneyDetailView(journey: journey)
+            }
         }
     }
 }

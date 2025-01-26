@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import UIKit
 
 let appRegion = AppRegion.singapore
 
@@ -43,3 +44,7 @@ let projection = EquirectangularProjection()
 
 // route type == 1
 let railRoutes = Set(["SW", "TE", "SE", "PW", "PE", "NS", "NE", "EW", "DT", "CG", "CE", "CC", "BP",])
+
+var isPad: Bool {
+    UIDevice.current.userInterfaceIdiom == .pad
+}
