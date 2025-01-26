@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct JourneyDetailView: View {
-    let journey: [JourneyComponent]
+    let journey: [JourneyViewComponent]
     
     private var titleView: some View {
         HStack {
@@ -36,7 +36,7 @@ struct JourneyDetailView: View {
                 }
             }
             .padding(8.0)
-            .background(.gray.adjust(by: -42.0))
+            .background(.gray.adjust(by: -46.0))
             .clipShape(
                 RoundedRectangle(cornerRadius: 8.0)
             )

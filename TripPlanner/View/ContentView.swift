@@ -11,28 +11,26 @@ import MapKit
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @State var selection = 1
     
     var body: some View {
         TabView {
             NavigationStack {
-                TripPlannerView()
+                JourneyPlannerView()
             }
             .tabItem {
                 Label("Trip Planner", systemImage: "xmark")
             }
             .tag(1)
-            
-            NavigationStack {
-                RouteListView()
-            }
-            .tabItem {
-                Label("Routes", systemImage: "xmark")
-            }
-            .tag(2)
+//            NavigationStack {
+//                RouteListView()
+//            }
+//            .tabItem {
+//                Label("Routes", systemImage: "xmark")
+//            }
+//            .tag(2)
         }
         .onAppear {
-            TripPlanner.shared = TripPlanner(modelContext: modelContext)
+            JourneyPlanner.shared = JourneyPlanner(modelContext: modelContext)
         }
     }
 }

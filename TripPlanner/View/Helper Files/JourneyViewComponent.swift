@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum JourneyComponent: Identifiable {
+enum JourneyViewComponent: Identifiable {
     case trip(Trip, start: Stop, destination: Stop)
     case walking(distance: Int, start: Stop, destination: Stop)
     

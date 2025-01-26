@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D01093182D3F85F200B89E30 /* TripPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093172D3F85F200B89E30 /* TripPlanner.swift */; };
 		D01093222D3F863100B89E30 /* KDTree+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093192D3F863000B89E30 /* KDTree+CustomStringConvertible.swift */; };
 		D01093232D3F863100B89E30 /* KDTree+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D010931A2D3F863000B89E30 /* KDTree+Sequence.swift */; };
 		D01093242D3F863100B89E30 /* CGPoint+KDTreePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D010931B2D3F863000B89E30 /* CGPoint+KDTreePoint.swift */; };
@@ -21,7 +20,7 @@
 		D010932F2D3F88BD00B89E30 /* EquirectangularProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D010932E2D3F88BD00B89E30 /* EquirectangularProjection.swift */; };
 		D01093312D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093302D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift */; };
 		D01093352D3F8CDE00B89E30 /* ComputedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093342D3F8CDE00B89E30 /* ComputedData.swift */; };
-		D01093372D3F93D700B89E30 /* RouteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093362D3F93D700B89E30 /* RouteComponent.swift */; };
+		D01093372D3F93D700B89E30 /* JourneyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093362D3F93D700B89E30 /* JourneyComponent.swift */; };
 		D012C6A02D437C3300ABF03C /* KDTreeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012C69F2D437C3300ABF03C /* KDTreeOrder.swift */; };
 		D05BB4E72D3E28DF00E244A7 /* TripPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BB4E62D3E28DF00E244A7 /* TripPlannerApp.swift */; };
 		D05BB4E92D3E28DF00E244A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BB4E82D3E28DF00E244A7 /* ContentView.swift */; };
@@ -45,8 +44,8 @@
 		D070E8252D45953400CCCF7A /* Stop+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E8242D45953400CCCF7A /* Stop+Extensions.swift */; };
 		D070E8272D4595B600CCCF7A /* GTFSShape+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E8262D4595B600CCCF7A /* GTFSShape+Extensions.swift */; };
 		D070E82A2D45976700CCCF7A /* AppRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E8292D45976700CCCF7A /* AppRegion.swift */; };
-		D070E82C2D45983500CCCF7A /* JourneyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E82B2D45983500CCCF7A /* JourneyComponent.swift */; };
-		D07294582D4395E4009A6316 /* TripPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07294572D4395E4009A6316 /* TripPlannerView.swift */; };
+		D070E82C2D45983500CCCF7A /* JourneyViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070E82B2D45983500CCCF7A /* JourneyViewComponent.swift */; };
+		D07294582D4395E4009A6316 /* JourneyPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07294572D4395E4009A6316 /* JourneyPlannerView.swift */; };
 		D072945A2D4396CC009A6316 /* RouteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07294592D4396CC009A6316 /* RouteListView.swift */; };
 		D075442F2D3E4FD000528817 /* Constantstinopolis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D075442E2D3E4FD000528817 /* Constantstinopolis.swift */; };
 		D075443A2D3E4FE000528817 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07544302D3E4FDF00528817 /* Stop.swift */; };
@@ -61,6 +60,7 @@
 		D07544432D3E4FE000528817 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07544392D3E4FE000528817 /* Frequency.swift */; };
 		D07544472D3E500600528817 /* CSVDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07544452D3E500600528817 /* CSVDecodable.swift */; };
 		D07544482D3E500600528817 /* GTFS Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07544462D3E500600528817 /* GTFS Manager.swift */; };
+		D0EEC5E52D46886F00C8B91B /* JourneyPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EEC5E42D46886F00C8B91B /* JourneyPlanner.swift */; };
 		D0EFAB352D46262100778E28 /* JourneyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EFAB342D46262100778E28 /* JourneyDetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +82,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D01093172D3F85F200B89E30 /* TripPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlanner.swift; sourceTree = "<group>"; };
 		D01093192D3F863000B89E30 /* KDTree+CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KDTree+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		D010931A2D3F863000B89E30 /* KDTree+Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KDTree+Sequence.swift"; sourceTree = "<group>"; };
 		D010931B2D3F863000B89E30 /* CGPoint+KDTreePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+KDTreePoint.swift"; sourceTree = "<group>"; };
@@ -96,7 +95,7 @@
 		D010932E2D3F88BD00B89E30 /* EquirectangularProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquirectangularProjection.swift; sourceTree = "<group>"; };
 		D01093302D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Extensions.swift"; sourceTree = "<group>"; };
 		D01093342D3F8CDE00B89E30 /* ComputedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputedData.swift; sourceTree = "<group>"; };
-		D01093362D3F93D700B89E30 /* RouteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteComponent.swift; sourceTree = "<group>"; };
+		D01093362D3F93D700B89E30 /* JourneyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyComponent.swift; sourceTree = "<group>"; };
 		D012C69F2D437C3300ABF03C /* KDTreeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDTreeOrder.swift; sourceTree = "<group>"; };
 		D05BB4E32D3E28DF00E244A7 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05BB4E62D3E28DF00E244A7 /* TripPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerApp.swift; sourceTree = "<group>"; };
@@ -123,8 +122,8 @@
 		D070E8242D45953400CCCF7A /* Stop+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stop+Extensions.swift"; sourceTree = "<group>"; };
 		D070E8262D4595B600CCCF7A /* GTFSShape+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GTFSShape+Extensions.swift"; sourceTree = "<group>"; };
 		D070E8292D45976700CCCF7A /* AppRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRegion.swift; sourceTree = "<group>"; };
-		D070E82B2D45983500CCCF7A /* JourneyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyComponent.swift; sourceTree = "<group>"; };
-		D07294572D4395E4009A6316 /* TripPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerView.swift; sourceTree = "<group>"; };
+		D070E82B2D45983500CCCF7A /* JourneyViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewComponent.swift; sourceTree = "<group>"; };
+		D07294572D4395E4009A6316 /* JourneyPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPlannerView.swift; sourceTree = "<group>"; };
 		D07294592D4396CC009A6316 /* RouteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListView.swift; sourceTree = "<group>"; };
 		D075442E2D3E4FD000528817 /* Constantstinopolis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constantstinopolis.swift; sourceTree = "<group>"; };
 		D07544302D3E4FDF00528817 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
@@ -139,6 +138,7 @@
 		D07544392D3E4FE000528817 /* Frequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		D07544452D3E500600528817 /* CSVDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVDecodable.swift; sourceTree = "<group>"; };
 		D07544462D3E500600528817 /* GTFS Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GTFS Manager.swift"; sourceTree = "<group>"; };
+		D0EEC5E42D46886F00C8B91B /* JourneyPlanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyPlanner.swift; sourceTree = "<group>"; };
 		D0EFAB342D46262100778E28 /* JourneyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,14 +206,14 @@
 			path = Equirectangular;
 			sourceTree = "<group>";
 		};
-		D01093382D3F985600B89E30 /* Trip Planner */ = {
+		D01093382D3F985600B89E30 /* Journey Planner */ = {
 			isa = PBXGroup;
 			children = (
-				D01093172D3F85F200B89E30 /* TripPlanner.swift */,
+				D0EEC5E42D46886F00C8B91B /* JourneyPlanner.swift */,
 				D01093342D3F8CDE00B89E30 /* ComputedData.swift */,
-				D01093362D3F93D700B89E30 /* RouteComponent.swift */,
+				D01093362D3F93D700B89E30 /* JourneyComponent.swift */,
 			);
-			path = "Trip Planner";
+			path = "Journey Planner";
 			sourceTree = "<group>";
 		};
 		D012C6A32D437D2F00ABF03C /* Custom Conformances */ = {
@@ -303,7 +303,7 @@
 		D070E8282D45971B00CCCF7A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D07294572D4395E4009A6316 /* TripPlannerView.swift */,
+				D07294572D4395E4009A6316 /* JourneyPlannerView.swift */,
 				D0EFAB342D46262100778E28 /* JourneyDetailView.swift */,
 				D07294592D4396CC009A6316 /* RouteListView.swift */,
 				D05BB4E82D3E28DF00E244A7 /* ContentView.swift */,
@@ -315,7 +315,7 @@
 		D070E82D2D45984500CCCF7A /* Helper Files */ = {
 			isa = PBXGroup;
 			children = (
-				D070E82B2D45983500CCCF7A /* JourneyComponent.swift */,
+				D070E82B2D45983500CCCF7A /* JourneyViewComponent.swift */,
 			);
 			path = "Helper Files";
 			sourceTree = "<group>";
@@ -354,7 +354,7 @@
 				D075442E2D3E4FD000528817 /* Constantstinopolis.swift */,
 				D07544492D3E500B00528817 /* GTFS */,
 				D01093332D3F897D00B89E30 /* Equirectangular */,
-				D01093382D3F985600B89E30 /* Trip Planner */,
+				D01093382D3F985600B89E30 /* Journey Planner */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -501,6 +501,7 @@
 				D010932D2D3F881B00B89E30 /* EquirectangularStop.swift in Sources */,
 				D07544482D3E500600528817 /* GTFS Manager.swift in Sources */,
 				D012C6A02D437C3300ABF03C /* KDTreeOrder.swift in Sources */,
+				D0EEC5E52D46886F00C8B91B /* JourneyPlanner.swift in Sources */,
 				D01093352D3F8CDE00B89E30 /* ComputedData.swift in Sources */,
 				D01093262D3F863100B89E30 /* KDTree+Codable.swift in Sources */,
 				D070E8272D4595B600CCCF7A /* GTFSShape+Extensions.swift in Sources */,
@@ -510,7 +511,7 @@
 				D075443C2D3E4FE000528817 /* StopTime.swift in Sources */,
 				D010932A2D3F863100B89E30 /* KDTreePoint.swift in Sources */,
 				D05BB4E92D3E28DF00E244A7 /* ContentView.swift in Sources */,
-				D01093372D3F93D700B89E30 /* RouteComponent.swift in Sources */,
+				D01093372D3F93D700B89E30 /* JourneyComponent.swift in Sources */,
 				D01093312D3F894100B89E30 /* CLLocationCoordinate2D+Extensions.swift in Sources */,
 				D075443F2D3E4FE000528817 /* Trip.swift in Sources */,
 				D075443E2D3E4FE000528817 /* GTFSCalendar.swift in Sources */,
@@ -527,12 +528,11 @@
 				D07544422D3E4FE000528817 /* Route.swift in Sources */,
 				D01093282D3F863100B89E30 /* KDTree+NearestNeighbour.swift in Sources */,
 				D01093222D3F863100B89E30 /* KDTree+CustomStringConvertible.swift in Sources */,
-				D01093182D3F85F200B89E30 /* TripPlanner.swift in Sources */,
 				D072945A2D4396CC009A6316 /* RouteListView.swift in Sources */,
 				D07544472D3E500600528817 /* CSVDecodable.swift in Sources */,
 				D070E81F2D45936100CCCF7A /* Color+Extensions.swift in Sources */,
-				D070E82C2D45983500CCCF7A /* JourneyComponent.swift in Sources */,
-				D07294582D4395E4009A6316 /* TripPlannerView.swift in Sources */,
+				D070E82C2D45983500CCCF7A /* JourneyViewComponent.swift in Sources */,
+				D07294582D4395E4009A6316 /* JourneyPlannerView.swift in Sources */,
 				D070E82A2D45976700CCCF7A /* AppRegion.swift in Sources */,
 				D01093252D3F863100B89E30 /* KDTree+Equatable.swift in Sources */,
 				D07544402D3E4FE000528817 /* Agency.swift in Sources */,

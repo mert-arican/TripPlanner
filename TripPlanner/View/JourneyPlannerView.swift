@@ -1,5 +1,5 @@
 //
-//  TripPlannerView.swift
+//  JourneyPlannerView.swift
 //  TripPlanner
 //
 //  Created by Mert Arıcan on 24.01.2025.
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 import MapKit
 
-struct TripPlannerView: View {
+struct JourneyPlannerView: View {
     @Environment(\.modelContext) private var modelContext
     
     @State private var startingPoint: CLLocationCoordinate2D?
@@ -17,8 +17,8 @@ struct TripPlannerView: View {
     @State private var destinationPoint: CLLocationCoordinate2D?
     // = .init(latitude: 1.337579411339063, longitude: 103.91502156254148)
     
-    private var tripPlanner: TripPlanner {
-        TripPlanner.shared
+    private var journeyPlanner: JourneyPlanner {
+        JourneyPlanner.shared
     }
     
     private let region = MKCoordinateRegion(
@@ -26,7 +26,7 @@ struct TripPlannerView: View {
         span: MKCoordinateSpan(latitudeDelta: 0.42, longitudeDelta: 0.42) // Zoom level
     )
     
-    @State private var plannedJourneys: [[RouteComponent]]?
+    @State private var plannedJourneys: [[JourneyComponent]]?
     @State private var selectedJourneyIndex: Int?
     @State private var showJourneyDetail: Bool = false
     
@@ -45,15 +45,15 @@ struct TripPlannerView: View {
         return shapes[_source...destination].map { MKMapPoint($0.coordinate) }
     }
     
-    func mapTripsWithStops(components: [RouteComponent]) -> [JourneyComponent] {
+    func mapTripsWithStops(components: [JourneyComponent]) -> [JourneyViewComponent] {
         guard components.count >= 3 else { return [] }
-        var results: [JourneyComponent] = []
+        var results: [JourneyViewComponent] = []
         let firstStop = components[0].stop
         let distance = Int(sqrt(startingPoint!.point.squaredDistance(to: firstStop.point)))
-        let start = Stop(id: "", code: "", latitude: startingPoint!.latitude, longitude: startingPoint!.longitude, name: "", url: "", wheelchairBoarding: false)
+        let start = Stop(id: "", code: "", latitude: startingPoint!.latitude, longitude: startingPoint!.longitude, name: "Starting Point", url: "", wheelchairBoarding: false)
         results.append(.walking(distance: distance, start: start, destination: firstStop))
         
-        let ultDestination = Stop(id: "", code: "", latitude: destinationPoint!.latitude, longitude: destinationPoint!.longitude, name: "", url: "", wheelchairBoarding: false)
+        let ultDestination = Stop(id: "", code: "", latitude: destinationPoint!.latitude, longitude: destinationPoint!.longitude, name: "Destination Point", url: "", wheelchairBoarding: false)
         
         for i in 1..<components.count - 1 {
             if case let .stop(start) = components[i - 1],
@@ -65,7 +65,10 @@ struct TripPlannerView: View {
                         results.append(.walking(distance: distance, start: destination, destination: ultDestination))
                     }
                 }
-                else if case let .walking(distance) = components[i] {
+                else if case var .walking(distance) = components[i] {
+                    if i == components.count - 2 {
+                        distance = Int(sqrt(ultDestination.point.squaredDistance(to: components[i-1].stop.point)))
+                    }
                     let dest = (i != components.count - 2) ? destination : ultDestination
                     results.append(.walking(distance: distance, start: start, destination:  dest))
                 }
@@ -121,7 +124,7 @@ struct TripPlannerView: View {
                             self.destinationPoint = touchPoint
                         }
                         if let start = startingPoint, let destination = destinationPoint {
-                            self.plannedJourneys = tripPlanner.findTrips(from: start, to: destination)
+                            self.plannedJourneys = journeyPlanner.findJourneys(from: start, to: destination)
                             self.selectedJourneyIndex = 0
                             self.showJourneyDetail = true
                         }

@@ -7,26 +7,26 @@
 
 import Foundation
 
-enum RouteComponent: Equatable, Hashable, CustomStringConvertible {
+enum JourneyComponent: Equatable, Hashable, CustomStringConvertible {
     case walking(distance: Int)
     case stop(Stop)
     case trip(Trip)
     
-    static func ==(_ lhs: RouteComponent, _ rhs: Trip) -> Bool {
+    static func ==(_ lhs: JourneyComponent, _ rhs: Trip) -> Bool {
         switch lhs {
         case .trip(let trip): trip.routeID == rhs.id
         default: false
         }
     }
     
-    static func ==(_ lhs: RouteComponent, _ rhs: Route) -> Bool {
+    static func ==(_ lhs: JourneyComponent, _ rhs: Route) -> Bool {
         switch lhs {
         case .trip(let trip): trip.routeID == rhs.id
         default: false
         }
     }
     
-    static func ==(_ lhs: RouteComponent, _ rhs: Stop) -> Bool {
+    static func ==(_ lhs: JourneyComponent, _ rhs: Stop) -> Bool {
         switch lhs {
         case .stop(let stop): stop.id == rhs.id
         default: false

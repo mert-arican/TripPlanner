@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import SwiftData
 
-struct TripPlanner {
+struct JourneyPlanner {
     let stopTimes: [String : [StopTime]]
     let stopsByTripID: [String : [Stop]]
     let tripsByStopID: [String : [Trip]]
@@ -42,9 +42,9 @@ struct TripPlanner {
         self.tree = loadedData.tree
     }
     
-    static var shared: TripPlanner!
+    static var shared: JourneyPlanner!
     
-    func findTrips(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) -> [[RouteComponent]]? {
+    func findJourneys(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) -> [[JourneyComponent]]? {
         let theSource = tree.nearest(to: .init(stop: .empty, point: source.point))!
         let sources = transferableStops[theSource.stop.id]!
         let theDestination = tree.nearest(to: .init(stop: .empty, point: destination.point))!
@@ -56,17 +56,17 @@ struct TripPlanner {
     // Also it doesn't support multiple source and destinations.
     // This function is a mix of RAPTOR and BFS.
     // It finds maximum of four distincs trips between given sources and destinations.
-    private func raptorizedBFS(from sources: [Stop], to destinations: Set<Stop>, _ dontPickTheseTrips: Set<Trip?>=[]) -> [[RouteComponent]]? {
+    private func raptorizedBFS(from sources: [Stop], to destinations: Set<Stop>, _ dontPickTheseTrips: Set<Trip?>=[]) -> [[JourneyComponent]]? {
         var dontPickTheseTrips = dontPickTheseTrips
         let numberOfTransfers = 3
         
-        var rounds = [[[RouteComponent]]]()
+        var rounds = [[[JourneyComponent]]]()
         rounds.reserveCapacity(numberOfTransfers + 1)
         rounds = Array(repeating: [], count: numberOfTransfers + 1)
-        rounds[0] = sources.map { [RouteComponent.stop($0)] }
+        rounds[0] = sources.map { [JourneyComponent.stop($0)] }
         
         var visited = Set<String>()
-        var successfulTrips = [[RouteComponent]]()
+        var successfulTrips = [[JourneyComponent]]()
         var goalReached = false
         
         for k in 0..<numberOfTransfers {
@@ -100,7 +100,7 @@ struct TripPlanner {
                         }
                         
                         for walkableStop in walkableStops where !visited.contains(walkableStop.id) {
-                            let distance = Int(lastStop.point.squaredDistance(to: walkableStop.point))
+                            let distance = Int(sqrt(stop.point.squaredDistance(to: walkableStop.point)))
                             let walkByPath = newPath + [.walking(distance: distance), .stop(walkableStop)]
                             rounds[k + 1].append(walkByPath)
                             visited.insert(walkableStop.id)
