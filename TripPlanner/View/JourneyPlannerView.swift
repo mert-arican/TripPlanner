@@ -15,11 +15,13 @@ struct JourneyPlannerView: View {
     @State private var startingPoint: CLLocationCoordinate2D?
 //    = .init(latitude: 1.380775, longitude: 103.740154)
 //    = .init(latitude: 1.339299, longitude: 103.707629)
+//        = .init(latitude: 1.355670, longitude: 103.748648)
 
     @State private var destinationPoint: CLLocationCoordinate2D?
 //     = .init(latitude: 1.320865, longitude: 103.828507)
 //    = .init(latitude: 1.381543, longitude: 103.845154)
-    
+//        = .init(latitude: 1.321100, longitude: 103.821680)
+
     private var journeyPlanner: JourneyPlanner {
         JourneyPlanner.shared
     }
