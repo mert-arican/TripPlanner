@@ -36,6 +36,7 @@ struct TripPlannerApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(sharedModelContainer)
+                .preferredColorScheme(.dark)
         }
     }
 }

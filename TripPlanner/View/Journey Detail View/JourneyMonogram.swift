@@ -17,12 +17,13 @@ struct JourneyMonogram: View {
     var body: some View {
         HStack {
             Image(systemName: trip.isRailway ? "tram.fill.tunnel" : "bus")
-            Text(trip.routeID.uppercased())
+            Text(trip.routeID.uppercased()).lineLimit(1)
         }
         .padding(4.2)
         .overlay(
             RoundedRectangle(cornerRadius: 2.1)
                 .stroke(.gray.adjust(by: 42.0), lineWidth: 0.42)
         )
+        .minimumScaleFactor(isPad ? 1.0 : 0.42)
     }
 }

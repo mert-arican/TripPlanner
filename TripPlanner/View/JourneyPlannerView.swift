@@ -126,7 +126,7 @@ struct JourneyPlannerView: View {
                         if let start = startingPoint, let destination = destinationPoint {
                             self.plannedJourneys = journeyPlanner.findJourneys(from: start, to: destination)
                             self.selectedJourneyIndex = 0
-//                            self.showJourneyDetail = true
+                            //                            self.showJourneyDetail = true
                         }
                     }
                 }
@@ -134,45 +134,36 @@ struct JourneyPlannerView: View {
             .edgesIgnoringSafeArea(.all)
             .navigationTitle("RouteBolt")
             VStack {
-                VStack {
-                    if let startingPoint = startingPoint {
-                        Button {
-                            self.startingPoint = nil
-                            self.plannedJourneys = nil
-                            self.selectedJourneyIndex = nil
-                            self.showJourneyDetail = false
-                        } label: {
-                            Text(startingPoint.coordinateText)
-                                .padding()
-                                .background(.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 8.0))
-                        }
+                if let startingPoint = startingPoint {
+                    Button {
+                        self.startingPoint = nil
+                        self.plannedJourneys = nil
+                        self.selectedJourneyIndex = nil
+                        self.showJourneyDetail = false
+                    } label: {
+                        Text(startingPoint.coordinateText)
+                            .padding()
+                            .background(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 8.0))
                     }
-                    if let destinationPoint = destinationPoint {
-                        Button {
-                            self.destinationPoint = nil
-                            self.plannedJourneys = nil
-                            self.selectedJourneyIndex = nil
-                            self.showJourneyDetail = false
-                        } label: {
-                            Text(destinationPoint.coordinateText)
-                                .padding()
-                                .background(.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 8.0))
-                        }
-                    }
-                    Spacer()
                 }
-                .foregroundStyle(.white)
-                .padding()
-                
+                if let destinationPoint = destinationPoint {
+                    Button {
+                        self.destinationPoint = nil
+                        self.plannedJourneys = nil
+                        self.selectedJourneyIndex = nil
+                        self.showJourneyDetail = false
+                    } label: {
+                        Text(destinationPoint.coordinateText)
+                            .padding()
+                            .background(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                    }
+                }
                 Spacer()
-                
-                // MARK: TODO: Planned Trips List View
-                VStack {
-                    
-                }
             }
+            .foregroundStyle(.white)
+            .padding()
         }
         .overlay(alignment: .bottom) {
             if let index = selectedJourneyIndex,
@@ -180,11 +171,11 @@ struct JourneyPlannerView: View {
             {
                 let journeyView = mapTripsWithStops(components: journey)
                 if showJourneyDetail {
-                    JourneyDetailView(journey: journeyView)
+                    JourneyDetailView(journey: journeyView, showDetail: $showJourneyDetail)
                 }
                 else {
                     let _plannedJourneys = plannedJourneys?.compactMap { mapTripsWithStops(components: $0) }
-                    JourneyListView(for: _plannedJourneys, showJourneyDetail: $showJourneyDetail)
+                    JourneyListView(for: _plannedJourneys, selectedJourneyIndex: $selectedJourneyIndex, showDetail: $showJourneyDetail)
                 }
             }
         }

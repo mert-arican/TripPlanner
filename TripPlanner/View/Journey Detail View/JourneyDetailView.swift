@@ -9,10 +9,11 @@ import SwiftUI
 
 struct JourneyDetailView: View {
     let journey: [JourneyViewComponent]
-    
+    @Binding var showDetail: Bool
+
     var body: some View {
         VStack(spacing: 0.0) {
-            JourneyTitleView(for: journey)
+            JourneyTitleView(for: journey, showDetail: $showDetail)
                 .padding()
                 .padding(.leading)
             

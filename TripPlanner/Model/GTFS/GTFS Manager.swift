@@ -15,6 +15,7 @@ import SwiftData
 
 struct GTFSManager {
     static func createDatabaseIfNotExist(modelContext: ModelContext) {
+        print("CREATE DATABASE START", Date())
         let savedAppRegion = UserDefaults.standard.string(forKey: "appRegion")
         let shouldClearDatabase = savedAppRegion != appRegion.rawValue
         if shouldClearDatabase {
@@ -39,6 +40,9 @@ struct GTFSManager {
         let fileExists = fileManager.fileExists(atPath: appRegion.fileURL.path)
         
         guard !fileExists else { return }
+        
+        let fetchDescriptor = FetchDescriptor<GTFSCalendar>()
+        AppRegion.allServiceIDs = try! modelContext.fetch(fetchDescriptor)
         
         // If the file doesn't exist, fetch and compute the data
         let tripFetchRequest = FetchDescriptor<Trip>()
@@ -107,6 +111,7 @@ struct GTFSManager {
                 print("Error writing data to disk.")
             }
         }
+        print("CREATE DATABASE END", Date())
     }
 }
 

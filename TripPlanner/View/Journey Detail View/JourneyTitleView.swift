@@ -9,9 +9,15 @@ import SwiftUI
 
 struct JourneyTitleView: View {
     let journey: [JourneyViewComponent]
+    let asListItem: Bool
+    @Binding var showDetail: Bool
     
-    init(for journey: [JourneyViewComponent]) {
+    init(for journey: [JourneyViewComponent],
+         showDetail: Binding<Bool>,
+         asListItem: Bool=false) {
         self.journey = journey
+        self._showDetail = showDetail
+        self.asListItem = asListItem
     }
     
     var body: some View {
@@ -40,11 +46,14 @@ struct JourneyTitleView: View {
                 RoundedRectangle(cornerRadius: 8.0)
                     .stroke(.gray.adjust(by: 20.0), lineWidth: 0.42)
             )
-            
             Spacer()
-            
-            Image(systemName: "xmark")
-                .padding()
+            if !asListItem {
+                Button {
+                    showDetail = false
+                } label: {
+                    Image(systemName: "xmark").padding()
+                }
+            }
         }
     }
 }

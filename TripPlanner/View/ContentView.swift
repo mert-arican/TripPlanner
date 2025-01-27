@@ -18,7 +18,7 @@ struct ContentView: View {
                 JourneyPlannerView()
             }
             .tabItem {
-                Label("Trip Planner", systemImage: "xmark")
+                Label("Trip Planner", systemImage: "map")
             }
             .tag(1)
 //            NavigationStack {
