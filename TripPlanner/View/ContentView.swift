@@ -12,6 +12,10 @@ import MapKit
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     
+    // MARK: TODO:
+    // Initial load info
+    // Coordinate buttons
+    
     var body: some View {
         TabView {
             NavigationStack {

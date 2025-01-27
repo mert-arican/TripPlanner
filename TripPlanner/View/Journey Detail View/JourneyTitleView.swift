@@ -12,9 +12,7 @@ struct JourneyTitleView: View {
     let asListItem: Bool
     @Binding var showDetail: Bool
     
-    init(for journey: [JourneyViewComponent],
-         showDetail: Binding<Bool>,
-         asListItem: Bool=false) {
+    init(for journey: [JourneyViewComponent],showDetail: Binding<Bool>, asListItem: Bool=false) {
         self.journey = journey
         self._showDetail = showDetail
         self.asListItem = asListItem

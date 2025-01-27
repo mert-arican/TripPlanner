@@ -10,7 +10,7 @@ import CoreLocation
 import SwiftData
 
 struct JourneyPlanner {
-    let stopTimes: [String : [StopTime]]
+    let stopTimes: [String : [String: StopTime]]
     let stopsByTripID: [String : [Stop]]
     let tripsByStopID: [String : [Trip]]
     
@@ -80,7 +80,7 @@ struct JourneyPlanner {
                 
                 for trip in connectedTrips {
                     let downstreamStops = stopsByTripID[trip.id]!
-                        .suffix(from: stopTimeOrder[trip.id]![lastStop.id]!)
+                        .suffix(from: stopTimeOrder[trip.id]![lastStop.id]!+1)
                     
                     for stop in downstreamStops where !visited.contains(stop.id) {
                         let newPath = path + [.trip(trip), .stop(stop)]
@@ -89,7 +89,7 @@ struct JourneyPlanner {
                         
                         if destinations.contains(stop) {
                             successfulTrips.append(newPath)
-                            dontPickTheseTrips.insert(newPath.first(where: { $0.type == 2 })?.trip)
+                            dontPickTheseTrips.insert(newPath.first(where: { $0.type == 2 && !dontPickTheseTrips.contains($0.trip)})?.trip)
                             goalReached = true
                             if dontPickTheseTrips.count == 4 { return successfulTrips }
                             else { break }
@@ -108,7 +108,7 @@ struct JourneyPlanner {
                             if destinations.contains(walkableStop) {
                                 successfulTrips.append(walkByPath)
                                 goalReached = true
-                                dontPickTheseTrips.insert(walkByPath.first(where: { $0.type == 2 })?.trip)
+                                dontPickTheseTrips.insert(walkByPath.first(where: { $0.type == 2 && !dontPickTheseTrips.contains($0.trip)})?.trip)
                                 if dontPickTheseTrips.count == 4 { return successfulTrips }
                                 else { break }
                             }

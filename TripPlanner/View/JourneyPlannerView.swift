@@ -13,9 +13,12 @@ struct JourneyPlannerView: View {
     @Environment(\.modelContext) private var modelContext
     
     @State private var startingPoint: CLLocationCoordinate2D?
-    // = .init(latitude: 1.332183089428991, longitude: 103.8521371433289)
+//    = .init(latitude: 1.380775, longitude: 103.740154)
+//    = .init(latitude: 1.339299, longitude: 103.707629)
+
     @State private var destinationPoint: CLLocationCoordinate2D?
-    // = .init(latitude: 1.337579411339063, longitude: 103.91502156254148)
+//     = .init(latitude: 1.320865, longitude: 103.828507)
+//    = .init(latitude: 1.381543, longitude: 103.845154)
     
     private var journeyPlanner: JourneyPlanner {
         JourneyPlanner.shared

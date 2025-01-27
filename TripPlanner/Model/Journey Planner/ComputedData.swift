@@ -8,7 +8,7 @@
 import Foundation
 
 struct ComputedData: Codable {
-    let stopTimes: [String : [StopTime]]
+    let stopTimes: [String : [String: StopTime]]
     let stopsByTripID: [String : [Stop]]
     let tripsByStopID: [String : [Trip]]
     let transferableStops: [String : [Stop]]

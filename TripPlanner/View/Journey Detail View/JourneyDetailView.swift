@@ -10,7 +10,19 @@ import SwiftUI
 struct JourneyDetailView: View {
     let journey: [JourneyViewComponent]
     @Binding var showDetail: Bool
-
+    
+    private var journeyPlanner: JourneyPlanner {
+        .shared
+    }
+    
+    private func getStopCount(for trip: Trip, between start: Stop, and destination: Stop) -> Int {
+        return journeyPlanner.stopTimeOrder[trip.id]![destination.id]! - journeyPlanner.stopTimeOrder[trip.id]![start.id]!
+    }
+    
+    private func getTimes(for trip: Trip, between start: Stop, and destination: Stop) -> String {
+        return journeyPlanner.stopTimes[trip.id]![start.id]!.arrivalTime + " " + journeyPlanner.stopTimes[trip.id]![destination.id]!.arrivalTime
+    }
+    
     var body: some View {
         VStack(spacing: 0.0) {
             JourneyTitleView(for: journey, showDetail: $showDetail)
@@ -55,8 +67,19 @@ struct JourneyDetailView: View {
                                         .font(.title2)
                                     Spacer()
                                     
-                                    JourneyMonogram(for: trip)
-                                    
+                                    if isPad {
+                                        HStack {
+                                            JourneyMonogram(for: trip)
+                                            Text("| \(getStopCount(for: trip, between: start, and:destination)) Stops")
+//                                            Text(" | \(getTimes(for: trip, between: start, and:destination))")
+                                        }
+                                    }
+                                    else { // is iPhone
+                                        VStack {
+                                            JourneyMonogram(for: trip)
+                                            Text("\(getStopCount(for: trip, between: start, and:destination)) Stops")
+                                        }
+                                    }
                                     Spacer()
                                     Text(destination.name)
                                         .font(.title2)

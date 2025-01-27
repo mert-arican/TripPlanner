@@ -56,7 +56,11 @@ struct GTFSManager {
         let tripLookup = Dictionary(uniqueKeysWithValues: allTrips.map { ($0.id, $0) })
         let stopLookup = Dictionary(uniqueKeysWithValues: allStops.map { ($0.id, $0) })
         
-        let stopTimes = Dictionary(grouping: allStopTimes, by: { $0.tripID })
+        var stopTimes = [String : [String:StopTime]]()
+        
+        for stopTime in allStopTimes {
+            stopTimes[stopTime.tripID, default: [:]][stopTime.stopID] = stopTime
+        }
         
         let stopsByTripID = Dictionary(grouping: allStopTimes, by: { $0.tripID })
             .mapValues { stopTimes in
