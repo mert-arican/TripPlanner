@@ -50,10 +50,10 @@ struct JourneyPlannerView: View {
         var results: [JourneyViewComponent] = []
         let firstStop = components[0].stop
         let distance = Int(sqrt(startingPoint!.point.squaredDistance(to: firstStop.point)))
-        let start = Stop(id: "", code: "", latitude: startingPoint!.latitude, longitude: startingPoint!.longitude, name: "Starting Point", url: "", wheelchairBoarding: false)
+        let start = Stop(id: "start", code: "", latitude: startingPoint!.latitude, longitude: startingPoint!.longitude, name: "Starting Point", url: "", wheelchairBoarding: false)
         results.append(.walking(distance: distance, start: start, destination: firstStop))
         
-        let ultDestination = Stop(id: "", code: "", latitude: destinationPoint!.latitude, longitude: destinationPoint!.longitude, name: "Destination Point", url: "", wheelchairBoarding: false)
+        let ultDestination = Stop(id: "destination", code: "", latitude: destinationPoint!.latitude, longitude: destinationPoint!.longitude, name: "Destination Point", url: "", wheelchairBoarding: false)
         
         for i in 1..<components.count - 1 {
             if case let .stop(start) = components[i - 1],
@@ -126,7 +126,7 @@ struct JourneyPlannerView: View {
                         if let start = startingPoint, let destination = destinationPoint {
                             self.plannedJourneys = journeyPlanner.findJourneys(from: start, to: destination)
                             self.selectedJourneyIndex = 0
-                            self.showJourneyDetail = true
+//                            self.showJourneyDetail = true
                         }
                     }
                 }
@@ -175,12 +175,17 @@ struct JourneyPlannerView: View {
             }
         }
         .overlay(alignment: .bottom) {
-            if showJourneyDetail,
-               let index = selectedJourneyIndex,
-               let route = plannedJourneys?[index]
+            if let index = selectedJourneyIndex,
+               let journey = plannedJourneys?[index]
             {
-                let journey = mapTripsWithStops(components: route)
-                JourneyDetailView(journey: journey)
+                let journeyView = mapTripsWithStops(components: journey)
+                if showJourneyDetail {
+                    JourneyDetailView(journey: journeyView)
+                }
+                else {
+                    let _plannedJourneys = plannedJourneys?.compactMap { mapTripsWithStops(components: $0) }
+                    JourneyListView(for: _plannedJourneys, showJourneyDetail: $showJourneyDetail)
+                }
             }
         }
     }
