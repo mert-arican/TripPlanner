@@ -48,3 +48,11 @@ let railRoutes = Set(["SW", "TE", "SE", "PW", "PE", "NS", "NE", "EW", "DT", "CG"
 var isPad: Bool {
     UIDevice.current.userInterfaceIdiom == .pad
 }
+
+let oneTimeSetupMessage = """
+Thank you for downloading the app! This one-time setup may take up to a minute. Please keep the app open during this step.
+"""
+
+var initialSetupRequired: Bool {
+    !FileManager.default.fileExists(atPath: appRegion.fileURL.path)
+}

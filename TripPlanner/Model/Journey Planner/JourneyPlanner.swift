@@ -57,8 +57,6 @@ struct JourneyPlanner {
     // This function is a mix of RAPTOR and BFS.
     // It finds maximum of four distincs trips between given sources and destinations.
     private func raptorizedBFS(from sources: [Stop], to destinations: Set<Stop>, _ dontPickTheseTrips: Set<Trip?>=[]) -> [[JourneyComponent]]? {
-//        print("raptorize", dontPickTheseTrips)
-        
         var dontPickTheseTrips = dontPickTheseTrips
         let numberOfTransfers = 3
         
@@ -72,12 +70,10 @@ struct JourneyPlanner {
         var goalReached = false
         
         for k in 0..<numberOfTransfers {
-//            print("k loop")
             let currentRound = rounds[k]
             rounds[k + 1] = []
             
             for path in currentRound {
-//                print("path loop")
                 if path.contains(where: { $0.type == 2 && dontPickTheseTrips.contains($0.trip) }) { continue }
                 let lastStop = path.last(where: { $0.type == 1 })!.stop
                 let connectedTrips = Set((tripsByStopID[lastStop.id] ?? [])
@@ -85,22 +81,18 @@ struct JourneyPlanner {
                 
                 for trip in connectedTrips
                 {
-//                    print("trip loop")
                     let downstreamStops = stopsByTripID[trip.id]!
                         .suffix(from: stopTimeOrder[trip.id]![lastStop.id]!+1)
                     
                     for stop in downstreamStops where !visited.contains(stop.id) {
-//                        print("stop loop")
                         let newPath = path + [.trip(trip), .stop(stop)]
                         rounds[k + 1].append(newPath)
                         visited.insert(stop.id)
                         
                         if destinations.contains(stop) {
                             successfulTrips.append(newPath)
-//                            print(dontPickTheseTrips, "BEEFORE", goalReached)
                             dontPickTheseTrips.insert(newPath.first(where: { $0.type == 2 && !dontPickTheseTrips.contains($0.trip)})?.trip)
                             goalReached = true
-//                            print("goal reached 1", newPath, dontPickTheseTrips, "AFTEr")
                             if dontPickTheseTrips.count == 4 { return successfulTrips }
                             else { break }
                         }
@@ -110,7 +102,6 @@ struct JourneyPlanner {
                         }
                         
                         for walkableStop in walkableStops where !visited.contains(walkableStop.id) {
-//                            print("walk loop")
                             let distance = Int(sqrt(stop.point.squaredDistance(to: walkableStop.point)))
                             let walkByPath = newPath + [.walking(distance: distance), .stop(walkableStop)]
                             rounds[k + 1].append(walkByPath)
@@ -120,21 +111,18 @@ struct JourneyPlanner {
                                 successfulTrips.append(walkByPath)
                                 goalReached = true
                                 dontPickTheseTrips.insert(walkByPath.first(where: { $0.type == 2 && !dontPickTheseTrips.contains($0.trip)})?.trip)
-//                                print("goal reached 2", walkByPath, dontPickTheseTrips)
                                 if dontPickTheseTrips.count == 4 { return successfulTrips }
                                 else { break }
                             }
                         }
                         
                         if goalReached {
-//                            print("goal reached 3", successfulTrips, dontPickTheseTrips)
                             return successfulTrips + (raptorizedBFS(from: sources, to: destinations, dontPickTheseTrips) ?? [])
                         }
                     }
                 }
             }
         }
-//        print("OUT OUT", successfulTrips, dontPickTheseTrips)
         return successfulTrips.count == 0 ? nil : successfulTrips
     }
 }

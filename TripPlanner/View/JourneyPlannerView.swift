@@ -15,12 +15,12 @@ struct JourneyPlannerView: View {
     @State private var startingPoint: CLLocationCoordinate2D?
     //    = .init(latitude: 1.380775, longitude: 103.740154)
     //    = .init(latitude: 1.339299, longitude: 103.707629)
-    //        = .init(latitude: 1.355670, longitude: 103.748648)
+    //    = .init(latitude: 1.355670, longitude: 103.748648)
     
     @State private var destinationPoint: CLLocationCoordinate2D?
-    //     = .init(latitude: 1.320865, longitude: 103.828507)
+    //    = .init(latitude: 1.320865, longitude: 103.828507)
     //    = .init(latitude: 1.381543, longitude: 103.845154)
-    //        = .init(latitude: 1.321100, longitude: 103.821680)
+    //    = .init(latitude: 1.321100, longitude: 103.821680)
     
     @State private var isLoading: Bool = false
     
@@ -30,7 +30,7 @@ struct JourneyPlannerView: View {
     
     private let region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 1.3521, longitude: 103.8198), // Singapore's coordinates
-        span: MKCoordinateSpan(latitudeDelta: 0.42, longitudeDelta: 0.42) // Zoom level
+        span: MKCoordinateSpan(latitudeDelta: 0.21, longitudeDelta: 0.21) // Zoom level
     )
     
     @State private var plannedJourneys: [[JourneyComponent]]?
@@ -86,8 +86,13 @@ struct JourneyPlannerView: View {
     
     var loadingView: some View {
         VStack {
-            Text("Loading Data")
+            Text("One-Time Setup in Progress")
                 .font(.headline)
+                .padding(.bottom, 10)
+            Divider()
+            
+            Text(oneTimeSetupMessage)
+                .font(.callout)
                 .padding(.bottom, 10)
             
             ProgressView()
@@ -95,9 +100,12 @@ struct JourneyPlannerView: View {
                 .scaleEffect(1.5)
                 .padding()
         }
-        .frame(width: 200, height: 150)
+        .padding()
+        .frame(maxWidth: isPad ? 420.0 : .infinity)
+        .aspectRatio(1.0, contentMode: .fit)
         .background(Color.gray.adjust(by: -42.0))
         .clipShape(RoundedRectangle(cornerRadius: 8.0))
+        .padding()
     }
     
     var journeyPlannerView: some View {
@@ -114,9 +122,9 @@ struct JourneyPlannerView: View {
                     if let tripIndex = selectedJourneyIndex,
                        let selectedTrip = plannedJourneys?[tripIndex]
                     {
-                        let components = mapTripsWithStops(components: selectedTrip)
+                        let viewComponents = mapTripsWithStops(components: selectedTrip)
                         
-                        ForEach(components) { component in
+                        ForEach(viewComponents) { component in
                             switch component {
                             case .trip(let trip, let start, let destination):
                                 let points = getPoints(of: trip, between: start, and: destination)
@@ -161,67 +169,63 @@ struct JourneyPlannerView: View {
                 loadingView
             }
             else {
-                // "Touch on the map to select the starting point"
-                // Touch on the map to select the destination point
                 VStack(alignment: .leading) {
-//                    if let startingPoint = startingPoint {
-                        Button {
-                            withAnimation {
-                                self.startingPoint = nil
-                                self.plannedJourneys = nil
-                                self.selectedJourneyIndex = nil
-                                self.showJourneyDetail = false
-                            }
-                        } label: {
-                            VStack {
-                                if let startingPoint = startingPoint {
-                                    Text("Starting point: " + startingPoint.coordinateText)
-                                        .foregroundStyle(.white)
-                                    Text("Tap to deselect starting point")
-                                        .font(.caption)
-                                        .foregroundStyle(.white.adjust(by: -20.0))
-                                }
-                                else {
-                                    Text("Touch on the map to select the starting point")
-                                                               .foregroundStyle(.white)
-                                }
-                            }
-                                .frame(maxWidth: 320.0)
-                                .padding(12.0)
-                                .background(.gray.adjust(by: -42.0))
-                                .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                    Button {
+                        withAnimation {
+                            self.startingPoint = nil
+                            self.plannedJourneys = nil
+                            self.selectedJourneyIndex = nil
+                            self.showJourneyDetail = false
                         }
-                        .disabled(startingPoint == nil)
+                    } label: {
+                        VStack {
+                            if let startingPoint = startingPoint {
+                                Text("Starting point: " + startingPoint.coordinateText)
+                                    .foregroundStyle(.white)
+                                Text("Tap to deselect starting point")
+                                    .font(.caption)
+                                    .foregroundStyle(.white.adjust(by: -20.0))
+                            }
+                            else {
+                                Text("Touch on the map to select the starting point")
+                                    .foregroundStyle(.white)
+                            }
+                        }
+                        .frame(maxWidth: 320.0)
+                        .padding(12.0)
+                        .background(.gray.adjust(by: -42.0))
+                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                    }
+                    .disabled(startingPoint == nil)
                     
-                        Button {
-                            withAnimation {
-                                self.destinationPoint = nil
-                                self.plannedJourneys = nil
-                                self.selectedJourneyIndex = nil
-                                self.showJourneyDetail = false
-                            }
-                        } label: {
-                            VStack {
-                                if let destinationPoint = destinationPoint {
-                                    Text("Destination point: " + destinationPoint.coordinateText)
-                                        .foregroundStyle(.white)
-                                    Text("Tap to deselect destination point")
-                                        .font(.caption)
-                                        .foregroundStyle(.white.adjust(by: -20.0))
-                                }
-                                else if startingPoint != nil {
-                                    Text("Touch on the map to select the destination point")
-                                                               .foregroundStyle(.white)
-                                }
-                            }
-                                .frame(maxWidth: 320.0)
-                                .padding(12.0)
-                                .background(.gray.adjust(by: -42.0))
-                                .clipShape(RoundedRectangle(cornerRadius: 8.0))
-                                .opacity(destinationPoint == nil && startingPoint == nil ? 0 : 1)
+                    Button {
+                        withAnimation {
+                            self.destinationPoint = nil
+                            self.plannedJourneys = nil
+                            self.selectedJourneyIndex = nil
+                            self.showJourneyDetail = false
                         }
-                        .disabled(destinationPoint == nil)
-//                    }
+                    } label: {
+                        VStack {
+                            if let destinationPoint = destinationPoint {
+                                Text("Destination point: " + destinationPoint.coordinateText)
+                                    .foregroundStyle(.white)
+                                Text("Tap to deselect destination point")
+                                    .font(.caption)
+                                    .foregroundStyle(.white.adjust(by: -20.0))
+                            }
+                            else if startingPoint != nil {
+                                Text("Touch on the map to select the destination point")
+                                    .foregroundStyle(.white)
+                            }
+                        }
+                        .frame(maxWidth: 320.0)
+                        .padding(12.0)
+                        .background(.gray.adjust(by: -42.0))
+                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                        .opacity(destinationPoint == nil && startingPoint == nil ? 0 : 1)
+                    }
+                    .disabled(destinationPoint == nil)
                     Spacer()
                 }
                 .foregroundStyle(.white)
@@ -247,15 +251,10 @@ struct JourneyPlannerView: View {
     var body: some View {
         journeyPlannerView
             .onAppear {
-//            let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                isLoading = true
-                //            }
+                isLoading = initialSetupRequired
                 DispatchQueue.main.async {
                     JourneyPlanner.shared = JourneyPlanner(modelContext: modelContext)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        isLoading = false
-                    }
-                    //                timer.invalidate()
+                    isLoading = false
                 }
             }
     }
