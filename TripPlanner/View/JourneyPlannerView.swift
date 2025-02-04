@@ -252,8 +252,8 @@ struct JourneyPlannerView: View {
         journeyPlannerView
             .onAppear {
                 isLoading = initialSetupRequired
-                DispatchQueue.main.async {
-                    JourneyPlanner.shared = JourneyPlanner(modelContext: modelContext)
+                Task {
+                    JourneyPlanner.shared = await JourneyPlanner(modelContext: modelContext)
                     isLoading = false
                 }
             }

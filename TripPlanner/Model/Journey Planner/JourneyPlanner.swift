@@ -18,7 +18,8 @@ struct JourneyPlanner {
     let stopTimeOrder: [String : [String : Int]] // Maps trip id with another dictionary which maps stop id with order of the stop within that trip
     let tree: KDTree<EquirectangularStop>
     
-    init(modelContext: ModelContext) {
+    @MainActor
+    init(modelContext: ModelContext) async {
         let fetchDescriptor = FetchDescriptor<GTFSCalendar>()
         AppRegion.allServiceIDs = try! modelContext.fetch(fetchDescriptor)
         let fileURL = appRegion.fileURL
