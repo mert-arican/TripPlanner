@@ -43,6 +43,33 @@ struct JourneyPlanner {
         self.tree = loadedData.tree
     }
     
+#if DEBUG
+    @MainActor
+    init(modelContext: ModelContext) {
+        let fetchDescriptor = FetchDescriptor<GTFSCalendar>()
+        AppRegion.allServiceIDs = try! modelContext.fetch(fetchDescriptor)
+        let fileURL = appRegion.fileURL
+        GTFSManager.createDatabaseIfNotExist(modelContext: modelContext)
+        let data = try! Data(contentsOf: fileURL)
+        // Load the data from the file
+        // Decode the data and assign it to the properties
+        let loadedData = try! JSONDecoder().decode(ComputedData.self, from: data)
+        self.stopTimes = loadedData.stopTimes
+        self.stopsByTripID = loadedData.stopsByTripID
+        var tmp = loadedData.tripsByStopID
+        let condition = AppRegion.serviceCondition
+        for (key, value) in tmp {
+            tmp[key] = value.filter {
+                condition($0.serviceID)
+            }
+        }
+        self.tripsByStopID = tmp
+        self.transferableStops = loadedData.transferableStops
+        self.stopTimeOrder = loadedData.stopTimeOrder
+        self.tree = loadedData.tree
+    }
+#endif
+    
     static var shared: JourneyPlanner!
     
     func findJourneys(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) -> [[JourneyComponent]]? {

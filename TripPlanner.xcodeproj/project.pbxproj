@@ -22,6 +22,8 @@
 		D01093352D3F8CDE00B89E30 /* ComputedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093342D3F8CDE00B89E30 /* ComputedData.swift */; };
 		D01093372D3F93D700B89E30 /* JourneyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01093362D3F93D700B89E30 /* JourneyComponent.swift */; };
 		D012C6A02D437C3300ABF03C /* KDTreeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012C69F2D437C3300ABF03C /* KDTreeOrder.swift */; };
+		D020C4212D5287BA004CE820 /* TripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D020C41F2D5287BA004CE820 /* TripPlannerUITests.swift */; };
+		D020C4222D5287BA004CE820 /* TripPlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D020C4202D5287BA004CE820 /* TripPlannerUITestsLaunchTests.swift */; };
 		D05B627C2D4767A1005E974D /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05B627B2D4767A1005E974D /* JourneyTitleView.swift */; };
 		D05B627E2D4767D6005E974D /* JourneyMonogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05B627D2D4767D6005E974D /* JourneyMonogram.swift */; };
 		D05BB4E72D3E28DF00E244A7 /* TripPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BB4E62D3E28DF00E244A7 /* TripPlannerApp.swift */; };
@@ -29,8 +31,6 @@
 		D05BB4EB2D3E28E200E244A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05BB4EA2D3E28E200E244A7 /* Assets.xcassets */; };
 		D05BB4EE2D3E28E200E244A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05BB4ED2D3E28E200E244A7 /* Preview Assets.xcassets */; };
 		D05BB4F82D3E28E200E244A7 /* TripPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BB4F72D3E28E200E244A7 /* TripPlannerTests.swift */; };
-		D05BB5022D3E28E200E244A7 /* TripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BB5012D3E28E200E244A7 /* TripPlannerUITests.swift */; };
-		D05BB5042D3E28E200E244A7 /* TripPlannerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BB5032D3E28E200E244A7 /* TripPlannerUITestsLaunchTests.swift */; };
 		D05BB5302D3E2D1900E244A7 /* transfer.txt in Resources */ = {isa = PBXBuildFile; fileRef = D05BB5272D3E2D1700E244A7 /* transfer.txt */; };
 		D05BB5312D3E2D1900E244A7 /* stop_times.txt in Resources */ = {isa = PBXBuildFile; fileRef = D05BB5282D3E2D1800E244A7 /* stop_times.txt */; };
 		D05BB5322D3E2D1900E244A7 /* frequencies.txt in Resources */ = {isa = PBXBuildFile; fileRef = D05BB5292D3E2D1800E244A7 /* frequencies.txt */; };
@@ -99,6 +99,9 @@
 		D01093342D3F8CDE00B89E30 /* ComputedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputedData.swift; sourceTree = "<group>"; };
 		D01093362D3F93D700B89E30 /* JourneyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyComponent.swift; sourceTree = "<group>"; };
 		D012C69F2D437C3300ABF03C /* KDTreeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDTreeOrder.swift; sourceTree = "<group>"; };
+		D020C41E2D5287B9004CE820 /* TripPlannerUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TripPlannerUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		D020C41F2D5287BA004CE820 /* TripPlannerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPlannerUITests.swift; sourceTree = "<group>"; };
+		D020C4202D5287BA004CE820 /* TripPlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D05B627B2D4767A1005E974D /* JourneyTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
 		D05B627D2D4767D6005E974D /* JourneyMonogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyMonogram.swift; sourceTree = "<group>"; };
 		D05BB4E32D3E28DF00E244A7 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,8 +112,6 @@
 		D05BB4F32D3E28E200E244A7 /* TripPlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05BB4F72D3E28E200E244A7 /* TripPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerTests.swift; sourceTree = "<group>"; };
 		D05BB4FD2D3E28E200E244A7 /* TripPlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripPlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D05BB5012D3E28E200E244A7 /* TripPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerUITests.swift; sourceTree = "<group>"; };
-		D05BB5032D3E28E200E244A7 /* TripPlannerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D05BB5272D3E2D1700E244A7 /* transfer.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transfer.txt; sourceTree = "<group>"; };
 		D05BB5282D3E2D1800E244A7 /* stop_times.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stop_times.txt; sourceTree = "<group>"; };
 		D05BB5292D3E2D1800E244A7 /* frequencies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = frequencies.txt; sourceTree = "<group>"; };
@@ -292,8 +293,9 @@
 		D05BB5002D3E28E200E244A7 /* TripPlannerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D05BB5012D3E28E200E244A7 /* TripPlannerUITests.swift */,
-				D05BB5032D3E28E200E244A7 /* TripPlannerUITestsLaunchTests.swift */,
+				D020C41F2D5287BA004CE820 /* TripPlannerUITests.swift */,
+				D020C4202D5287BA004CE820 /* TripPlannerUITestsLaunchTests.swift */,
+				D020C41E2D5287B9004CE820 /* TripPlannerUITests-Bridging-Header.h */,
 			);
 			path = TripPlannerUITests;
 			sourceTree = "<group>";
@@ -448,6 +450,7 @@
 					};
 					D05BB4FC2D3E28E200E244A7 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 						TestTargetID = D05BB4E22D3E28DF00E244A7;
 					};
 				};
@@ -570,8 +573,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D05BB5042D3E28E200E244A7 /* TripPlannerUITestsLaunchTests.swift in Sources */,
-				D05BB5022D3E28E200E244A7 /* TripPlannerUITests.swift in Sources */,
+				D020C4222D5287BA004CE820 /* TripPlannerUITestsLaunchTests.swift in Sources */,
+				D020C4212D5287BA004CE820 /* TripPlannerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +817,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VD38UV2MEF;
@@ -822,6 +826,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mertarican.developer.TripPlannerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TripPlannerUITests/TripPlannerUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TripPlanner;
@@ -832,6 +838,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VD38UV2MEF;
@@ -840,6 +847,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mertarican.developer.TripPlannerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TripPlannerUITests/TripPlannerUITests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TripPlanner;
